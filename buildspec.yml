@@ -1,0 +1,38 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Install Python and pip
+      - echo Installing Python and dependencies...
+      - yum install -y python3
+      - python3 -m pip install --upgrade pip
+      # Install Robot Framework and required libraries
+      - pip3 install robotframework robotframework-requests
+
+  pre_build:
+    commands:
+      # Confirm installed versions
+      - echo Checking installed versions...
+      - python3 --version
+      - pip3 --version
+      - robot --version
+
+  build:
+    commands:
+      # Run Robot Framework tests
+      - echo Running Robot Framework tests...
+      - robot api_tests.robot
+
+  post_build:
+    commands:
+      # Display test results
+      - echo Build completed. Check Robot Framework results.
+      - cat output.xml
+
+artifacts:
+  files:
+    - output.xml
+    - report.html
+    - log.html
+  discard-paths: no
