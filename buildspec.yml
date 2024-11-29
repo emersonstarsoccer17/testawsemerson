@@ -7,6 +7,7 @@ phases:
     commands:
       # Install Robot Framework and required libraries
       - echo Installing Robot Framework and dependencies...
+      - pip install --upgrade pip
       - python3 -m pip install --upgrade pip
       - pip3 install robotframework robotframework-requests
 
@@ -16,7 +17,6 @@ phases:
       - echo Checking installed versions...
       - python3 --version
       - pip3 --version
-      - robot --version
 
   build:
     commands:
