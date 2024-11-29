@@ -22,7 +22,7 @@ phases:
     commands:
       # Run Robot Framework tests
       - echo Running Robot Framework tests...
-      - robot api_tests.robot
+      - robot login_tests.robot
 
   post_build:
     commands:
