@@ -10,6 +10,9 @@ phases:
       - pip install --upgrade pip
       - python3 -m pip install --upgrade pip
       - pip3 install robotframework robotframework-requests
+      # Install AWS CLI
+      - echo Installing AWS CLI...
+      - pip3 install awscli
 
   pre_build:
     commands:
@@ -17,6 +20,11 @@ phases:
       - echo Checking installed versions...
       - python3 --version
       - pip3 --version
+      - aws --version
+      - echo "Setting date variables..."
+      # Get current date in YYYY-MM-DD format
+      - export CURRENT_DATE=$(date +%F)
+      - echo "Current date is: $CURRENT_DATE"
 
   build:
     commands:
@@ -27,8 +35,11 @@ phases:
   post_build:
     commands:
       # Display test results
-      - echo "completed"
-      - cat output.xml
+      - echo "Build completed. Uploading results to S3 with date-based folder structure..."
+      # Upload results to S3 bucket in a folder based on the current date
+      - aws s3 cp output.xml s3://mytestresultsxxx1/$CURRENT_DATE/output.xml
+      - aws s3 cp report.html s3://mytestresultsxxx1/$CURRENT_DATE/report.html
+      - aws s3 cp log.html s3://mytestresultsxxx1/$CURRENT_DATE/log.html
 
 artifacts:
   files:
