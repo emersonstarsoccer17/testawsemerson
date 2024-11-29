@@ -24,7 +24,7 @@ phases:
       - echo "Setting date variables..."
       # Get current date in YYYY-MM-DD format
       - export CURRENT_DATE=$(date +%F)
-      - echo "Current date is: $CURRENT_DATE"
+      
 
   build:
     commands:
