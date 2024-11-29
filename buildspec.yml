@@ -21,13 +21,13 @@ phases:
   build:
     commands:
       # Run Robot Framework tests
-      - echo Running Robot Framework tests...
+      - echo "Running Robot Framework test cases..."
       - robot login_tests.robot
 
   post_build:
     commands:
       # Display test results
-      - echo Build completed. Check Robot Framework results.
+      - echo "completed"
       - cat output.xml
 
 artifacts:
