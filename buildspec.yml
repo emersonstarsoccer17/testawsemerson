@@ -31,6 +31,7 @@ phases:
       # Run Robot Framework tests
       - echo "Running Robot Framework test cases..."
       - robot login_tests.robot
+      - python sns_code.py
 
   post_build:
     commands:
